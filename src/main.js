@@ -1,8 +1,6 @@
 import "./css/bootstrap.min.css";
 import "./css/style.min.css";
 
-import {one} from "./modules/one";
-import {two} from "./modules/two";
+import {timer} from "./modules/timer";
 
-one();
-two();
+timer("16 february 2026");
