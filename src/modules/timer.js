@@ -15,16 +15,25 @@ export const timer = (deadline) => {
     return {timeRemaining, hours, minutes, seconds};
   };
 
-  const updateClock = () => {
-    let getTime = getTimeRemaining();
-    timerHours.textContent = getTime.hours;
-    timerMinutes.textContent = getTime.minutes;
-    timerSeconds.textContent = getTime.seconds;
-
-    if (getTime.timeRemaining > 0) {
-      setTimeout(updateClock, 1000);
+  const zeroFormat = (data) => {
+    if (data < 10) {
+      return "0" + data;
+    } else {
+      return data;
     }
   };
 
-  updateClock();
+  const updateClock = () => {
+    let getTime = getTimeRemaining();
+
+    if (getTime.timeRemaining > 0) {
+      timerHours.textContent = zeroFormat(getTime.hours);
+      timerMinutes.textContent = zeroFormat(getTime.minutes);
+      timerSeconds.textContent = zeroFormat(getTime.seconds);
+    } else {
+      clearInterval(intervalId);
+    }
+  };
+
+  const intervalId = setInterval(updateClock, 1000);
 };
