@@ -5,6 +5,6 @@ import {timer} from "./modules/timer";
 import {menu} from "./modules/menu";
 import {modal} from "./modules/modal";
 
-timer("16 february 2026");
+timer("17 february 2026");
 menu();
 modal();
