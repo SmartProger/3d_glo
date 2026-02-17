@@ -1,7 +1,6 @@
 export const modal = () => {
   const buttons = document.querySelectorAll(".popup-btn");
   const modal = document.querySelector(".popup");
-  const closeBtn = modal.querySelector(".popup-close");
 
   let count = 0;
   let idAnimate;
@@ -44,10 +43,8 @@ export const modal = () => {
     btn.addEventListener("click", openModal);
   });
 
-  closeBtn.addEventListener("click", closeModal);
-
   modal.addEventListener("click", (e) => {
-    if (e.target.classList.contains("popup")) {
+    if (!e.target.closest(".popup-content") || e.target.classList.contains("popup-close")) {
       closeModal();
     }
   });
