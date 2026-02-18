@@ -7,10 +7,12 @@ import {modal} from "./modules/modal";
 import {regExpCalc} from "./modules/regExpCalc";
 import {regExpForms} from "./modules/regExpForms";
 import {tabs} from "./modules/tabs";
+import {slider} from "./modules/slider";
 
-timer("17 february 2026");
+timer("19 february 2026");
 menu();
 modal();
 regExpCalc();
 regExpForms();
 tabs();
+slider();
