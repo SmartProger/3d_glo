@@ -6,7 +6,7 @@ export const menu = () => {
   };
   menuBtn.addEventListener("click", handleMenu);
   menu.addEventListener("click", (e) => {
-    if (e.target.closest("a")) {
+    if (e.target.matches("a")) {
       handleMenu();
     }
   });
