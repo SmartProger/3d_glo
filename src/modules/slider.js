@@ -1,7 +1,22 @@
 export const slider = () => {
   const sliderBlock = document.querySelector(".portfolio-content");
   const slides = document.querySelectorAll(".portfolio-item");
+  const ulDots = document.querySelector(".portfolio-dots");
+
+  const createDots = () => {
+    slides.forEach((slide) => {
+      const newDot = document.createElement("li");
+      newDot.classList.add("dot");
+      if (slide.classList.contains("portfolio-item-active")) {
+        newDot.classList.add("dot-active");
+      }
+      ulDots.append(newDot);
+    });
+  };
+  createDots();
+
   const dots = document.querySelectorAll(".dot");
+  console.log(dots);
 
   const timeInterval = 2000;
 
