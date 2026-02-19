@@ -14,7 +14,7 @@ export const calc = (price = 100) => {
     let calcCountValue = 1;
     let calcDayValue = 1;
 
-    if (calcCount.value > 1) {
+    if (calcCount.value && calcCount.value > 1) {
       calcCountValue += calcCount.value / 10;
     }
 
@@ -24,7 +24,7 @@ export const calc = (price = 100) => {
       calcDayValue = 1.5;
     }
 
-    if (calcType.value && calcSquare.value) {
+    if (calcType.value && calcSquare.value && calcCount.value && calcDay.value) {
       totalValue = price * calcTypeValue * calcSquareValue * calcCountValue * calcDayValue;
     } else {
       totalValue = 0;
