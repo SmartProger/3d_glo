@@ -16,7 +16,6 @@ export const slider = () => {
   createDots();
 
   const dots = document.querySelectorAll(".dot");
-  console.log(dots);
 
   const timeInterval = 2000;
 
