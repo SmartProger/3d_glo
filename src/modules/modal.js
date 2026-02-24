@@ -1,22 +1,23 @@
-export const modal = () => {
-  const buttons = document.querySelectorAll(".popup-btn");
-  const modal = document.querySelector(".popup");
+import {animate} from "./helpers";
 
-  let count = 0;
-  let idAnimate;
-  modal.style.opacity = 0;
+export const modal = () => {
+  const serviceBlock = document.getElementById("service-block");
+  const modal = document.querySelector(".popup");
 
   const openModal = () => {
     if (document.documentElement.clientWidth > 768) {
+      modal.style.opacity = 0;
       modal.style.display = "block";
-      count += 0.05;
-      idAnimate = requestAnimationFrame(openModal);
-      if (count < 1) {
-        modal.style.opacity = count;
-      } else {
-        cancelAnimationFrame(idAnimate);
-        modal.style.opacity = 1;
-      }
+
+      animate({
+        duration: 400,
+        timing(timeFraction) {
+          return timeFraction;
+        },
+        draw(progress) {
+          modal.style.opacity = progress;
+        },
+      });
     } else {
       modal.style.display = "block";
       modal.style.opacity = 1;
@@ -25,22 +26,27 @@ export const modal = () => {
 
   const closeModal = () => {
     if (document.documentElement.clientWidth > 768) {
-      count -= 0.05;
-      idAnimate = requestAnimationFrame(closeModal);
-      if (count > 0) {
-        modal.style.opacity = count;
-      } else {
-        cancelAnimationFrame(idAnimate);
-        modal.style.opacity = 0;
-        modal.style.display = "none";
-      }
+      animate({
+        duration: 400,
+        timing(timeFraction) {
+          return timeFraction;
+        },
+        draw(progress) {
+          modal.style.opacity = 1 - progress;
+          if (progress === 1) {
+            modal.style.display = "none";
+          }
+        },
+      });
     } else {
       modal.style.display = "none";
     }
   };
 
-  buttons.forEach((btn) => {
-    btn.addEventListener("click", openModal);
+  serviceBlock.addEventListener("click", (e) => {
+    if (e.target.closest(".popup-btn")) {
+      openModal();
+    }
   });
 
   modal.addEventListener("click", (e) => {
