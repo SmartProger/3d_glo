@@ -3,17 +3,21 @@ export const regExpForms = () => {
   forms.forEach((form) => {
     const inputs = form.querySelectorAll("input");
     inputs.forEach((input) => {
-      if (input.type === "text") {
+      if (input.name === "user_name") {
         input.oninput = () => {
-          input.value = input.value.replace(/[^а-яё\-\s]/gi, "");
+          input.value = input.value.replace(/[^а-яё\s]/gi, "");
         };
       } else if (input.type === "email") {
         input.oninput = () => {
-          input.value = input.value.replace(/[^a-z0-9@\-_.!~*']/gi, "");
+          input.value = input.value.replace(/[^a-z\d@\-_.!~*']/gi, "");
         };
-      } else if (input.type === "tel") {
+      } else if (input.name === "user_phone") {
         input.oninput = () => {
-          input.value = input.value.replace(/[^0-9()\-]/gi, "");
+          input.value = input.value.replace(/[^\d+()\-]/gi, "");
+        };
+      } else if (input.name === "user_message") {
+        input.oninput = () => {
+          input.value = input.value.replace(/[^а-яё\d\s().,!?:;\-"']/gi, "");
         };
       }
     });
